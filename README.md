@@ -61,3 +61,10 @@ Upload the application code _target/scala-2.10/classification-benchmark_2.10-1.0
 The time to train the model is show in the last line of output
 
     Elapsed time: 72200219417ns
+
+
+## Caching
+By default the training dataset RDD is cached. A _nocache_ option is available to see the effects of not running with cached datasets:
+
+    ./bin/spark-submit   --class benchmark.classification.Benchmark   --master <spark_url>  classification-benchmark_2.10-1.0.jar nocache
+
