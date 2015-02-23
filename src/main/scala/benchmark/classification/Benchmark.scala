@@ -28,7 +28,9 @@ object Benchmark extends App {
   
   // Load training data in LIBSVM format.
   val data_orig = MLUtils.loadLibSVMFile(sc, "/data/rcv1_test.binary")
-  val data = data_orig.map(point => correct(point))
+  val data = 
+    if (args.contains("nocache"))  data_orig.map(point => correct(point));
+    else                           data_orig.map(point => correct(point)).cache();
   
   // Run training algorithm to build the model
   val numIterations = 100
