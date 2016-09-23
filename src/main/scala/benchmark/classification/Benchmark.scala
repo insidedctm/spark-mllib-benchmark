@@ -27,7 +27,9 @@ object Benchmark extends App {
   val sc = new SparkContext(conf)
   
   // Load training data in LIBSVM format.
-  val data_orig = MLUtils.loadLibSVMFile(sc, "/data/rcv1_test.binary")
+  var datafile_path = "/data/rcv1_test.binary"
+  if (args.length > 0) datafile_path = args(0)
+  val data_orig = MLUtils.loadLibSVMFile(sc, datafile_path)
   val data = 
     if (args.contains("nocache"))  data_orig.map(point => correct(point));
     else                           data_orig.map(point => correct(point)).cache();
