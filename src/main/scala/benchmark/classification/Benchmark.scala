@@ -50,7 +50,8 @@ object Benchmark extends App {
     val t0 = System.nanoTime()
     val result = block    // call-by-name
     val t1 = System.nanoTime()
-    println("Elapsed time: " + (t1 - t0) + "ns")
+    val elapsed = t1 - t0
+    println(s"Elapsed time: ${math.round(elapsed/1000000000.0)}s (${elapsed}ns)")
     result
   }
 }
